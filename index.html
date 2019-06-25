@@ -6,9 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pyschic Game</title>
+    <style>
+    .center
+    {
+
+        text-align: center;
+        color: brown;
+        font-size: 20px;
+    }
+    h1
+    {
+        text-align: center;
+        color: red;
+        font-size: 20px;
+
+    }
+    p
+    {
+
+        color: blue;
+        font-size: 15px;
+    }
+    
+    </style>
 </head>
 
 <body>
+
+    <div class="center">
+
+        <h1>The computer has picked a letter, now its your turn</h1>
+        <h2>Start guessing by typing</h2>
     <p id="log"></p>
 
     <p id="wins-text"></p>
@@ -17,7 +45,7 @@
     <p id="guessd-text"></p>
 
 
-
+</div>
     <script>
 
         var win = 0;
@@ -51,7 +79,7 @@
 
             userChoice.textContent = "You chose: " + userGuess;
             console.log(guessed);
-            guessedText.textContent = "your gusses: " + guessed;
+            guessedText.textContent = "Your guesses: " + guessed;
 
 
             if (/^[a-zA-Z]/.test(userGuess) && userGuess == computerChoice) {
@@ -59,12 +87,12 @@
 
 
 
-                alert("you are correct");
+                alert("You are correct");
                 win++;
-                console.log("wins " + win);
-                winsText.textContent = "wins: " + win;
+                console.log("Wins " + win);
+                winsText.textContent = "Wins: " + win;
 
-                alert("you won!! play again");
+                alert("You won!! Play again");
 
 
                 letter = letters[Math.floor(Math.random() * letters.length)];
@@ -77,18 +105,18 @@
 
 
                 guessed = [];
-                guessedText.textContent = "your guesses: " + guessed;
+                guessedText.textContent = "Your guesses: " + guessed;
 
 
             }
             else if (/^[a-zA-Z]/.test(userGuess) && userGuess != computerChoice) {
 
-                alert("you guessed wrong");
+                alert("You guessed wrong");
 
                 left--;
                 console.log("tries left " + left);
                 guessesText.textContent = "Guesses Left: " + left;
-                guessedText.textContent = "your guesses: " + guessed;
+                guessedText.textContent = "Your guesses: " + guessed;
 
 
                 if (left == 0) {
@@ -103,7 +131,7 @@
                     computerChoice = letter;
                     loss++;
                     console.log("losses " + loss);
-                    lossesText.textContent = "losses: " + loss;
+                    lossesText.textContent = "Losses: " + loss;
                     left = 5;
                     guessesText.textContent = "Guesses Left: " + left;
 
@@ -114,7 +142,7 @@
             }
 
             else {
-                alert("select a letter");
+                alert("Select a letter");
 
 
             }
