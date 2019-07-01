@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pyschic Game</title>
+    <style>
+    .center
+    {
+
+        text-align: center;
+        color: brown;
+        font-size: 20px;
+    }
+    h1
+    {
+        text-align: center;
+        color: red;
+        font-size: 20px;
+
+    }
+    p
+    {
+
+        color: blue;
+        font-size: 15px;
+    }
+    
+    </style>
+</head>
+
+<body>
+
+    <div class="center">
+
+        <h1>The computer has picked a letter, now its your turn</h1>
+        <h2>Start guessing by typing</h2>
+    <p id="log"></p>
+
+    <p id="wins-text"></p>
+    <p id="loss-text"></p>
+    <p id="guess-text"></p>
+    <p id="guessd-text"></p>
+
+
+</div>
+    <script>
+
+        var win = 0;
+        var loss = 0;
+        var left = 5;
+        var guessed = [];
+
+        var letter;
+        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
+        letter = letters[Math.floor(Math.random() * letters.length)];
+
+        var computerChoice = letter;
+        console.log(computerChoice);
+
+        var userChoice = document.getElementById("log");
+        var winsText = document.getElementById("wins-text");
+        var lossesText = document.getElementById("loss-text");
+        var guessesText = document.getElementById("guess-text");
+        var guessedText = document.getElementById("guessd-text");
+
+
+        document.onkeyup = function (event) {
+
+
+            var userGuess = event.key;
+
+            
+            guessed.push(userGuess);
+
+            userChoice.textContent = "You chose: " + userGuess;
+            console.log(guessed);
+            guessedText.textContent = "Your guesses: " + guessed;
+
+
+            if (/^[a-zA-Z]/.test(userGuess) && userGuess == computerChoice) {
+
+
+
+
+                alert("You are correct");
+                win++;
+                console.log("Wins " + win);
+                winsText.textContent = "Wins: " + win;
+
+                alert("You won!! Play again");
+
+
+                letter = letters[Math.floor(Math.random() * letters.length)];
+
+                console.log(letter);
+                computerChoice = letter;
+                left = 5;
+
+                guessesText.textContent = "Guesses Left: " + left;
+
+
+                guessed = [];
+                guessedText.textContent = "Your guesses: " + guessed;
+
+
+            }
+            else if (/^[a-zA-Z]/.test(userGuess) && userGuess != computerChoice) {
+
+                alert("You guessed wrong");
+
+                left--;
+                console.log("tries left " + left);
+                guessesText.textContent = "Guesses Left: " + left;
+                guessedText.textContent = "Your guesses: " + guessed;
+
+
+                if (left == 0) {
+                    guessed = [];
+
+                    alert("game over");
+
+
+                    letter = letters[Math.floor(Math.random() * letters.length)];
+
+                    console.log(letter);
+                    computerChoice = letter;
+                    loss++;
+                    console.log("losses " + loss);
+                    lossesText.textContent = "Losses: " + loss;
+                    left = 5;
+                    guessesText.textContent = "Guesses Left: " + left;
+
+
+                }
+
+
+            }
+
+            else {
+                alert("Select a letter");
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
